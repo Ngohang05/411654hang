@@ -1,5 +1,6 @@
 
 
+
 import React, { useState, useCallback, useRef, useMemo } from 'react';
 import * as XLSX from 'xlsx';
 import { PREBUILT_VOICES } from './constants';
@@ -136,8 +137,7 @@ const App: React.FC = () => {
       }
     } catch (error) {
       console.error(`Lỗi tạo giọng nói cho dòng ${id}:`, error);
-      // Fix: The 'error' from a catch block is of type 'unknown'.
-      // It must be converted to a string to be stored in the state, ensuring all error details are preserved.
+      // Fix: The 'error' variable in a catch block is of type 'unknown'. Explicitly convert it to a string to match the 'string | null' type in ScriptRowData.
       const errorMessage = error instanceof Error ? error.message : String(error);
       updateRow(id, {
         isLoading: false,
@@ -474,7 +474,7 @@ const App: React.FC = () => {
         
         <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
           <div>
-            <h1 className="text-4xl font-bold text-white">TM - MEDIA</h1>
+            <h1 className="text-4xl font-bold text-white">TM -MEDIA (voice)</h1>
           </div>
           <a 
             href="https://github.com/google/aistudio-apps/tree/main/prototyping/voiceover-studio" 
