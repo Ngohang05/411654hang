@@ -136,9 +136,9 @@ const App: React.FC = () => {
       }
     } catch (error) {
       console.error(`Lỗi tạo giọng nói cho dòng ${id}:`, error);
-      // FIX: The 'error' from a catch block is of type 'unknown'. It must be converted to a string
-      // before updating the state to match the 'string | null' type.
-      const errorMessage = error instanceof Error ? error.message : "Đã xảy ra lỗi không xác định.";
+      // Fix: The 'error' from a catch block is of type 'unknown'.
+      // It must be converted to a string to be stored in the state, ensuring all error details are preserved.
+      const errorMessage = error instanceof Error ? error.message : String(error);
       updateRow(id, {
         isLoading: false,
         error: errorMessage,
